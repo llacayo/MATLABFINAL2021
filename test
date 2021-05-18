@@ -1,0 +1,25 @@
+function [res, SSE, RMSE] = calcRMSE(u, v)
+ 
+if length(u) ~= length(v) 
+    error('The input vectors must be the same size'); 
+end
+
+A = [u' ones(numel(u),1)];
+b = v';
+
+c = A\b;
+
+vv = c(1).*u + c(2);
+
+res = v - vv
+
+SSE = sum(res.^2)
+
+RMSE = sqrt( sum((res.^2))/numel(u) )
+
+end
+
+
+
+
+ 
